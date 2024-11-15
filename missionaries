@@ -1,0 +1,25 @@
+f missionaries_and_cannibals():
+    left = {"M": 3, "C": 3}  
+    right = {"M": 0, "C": 0} 
+    boat = 1  
+    while right["M"] < 3 or right["C"] < 3:  
+        if boat == 1:  
+            if left["M"] > 1:  # Move 2 missionaries to the right
+                left["M"] -= 2
+                right["M"] += 2
+            elif left["C"] > 0:  # Move 1 cannibal to the right
+                left["C"] -= 1
+                right["C"] += 1
+        else:  # Boat is on the right side
+            if right["M"] > 0:  # Move 1 missionary back to the left side
+                right["M"] -= 1
+                left["M"] += 1
+            elif right["C"] > 1:  # Move 2 cannibals back to the left side
+                right["C"] -= 2
+                left["C"] += 2
+        
+        # Change the boat's side after each move
+        boat = 1 - boat
+        print(f"Left Side: Missionaries = {left['M']}, Cannibals = {left['C']} | Right Side: Missionaries = {right['M']}, Cannibals = {right['C']}")
+        
+missionaries_and_cannibals()
