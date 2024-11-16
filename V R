@@ -1,0 +1,51 @@
+[15/11, 10:22 pm] Mohith: def solve_puzzle(puzzle):
+    goal=[1, 2, 3, 4, 5, 6, 7, 8, 0]
+    
+    def print_puzzle(p):
+        for i in range(0, 9, 3):
+            print(p[i:i+3])
+            
+    print("Initial puzzle state:")
+    print_puzzle(puzzle)
+    
+    while puzzle != goal:
+        position=puzzle.index(0)
+        
+        if position%3 < 2:
+            puzzle[position], puzzle[position+1]=puzzle[position+1], puzzle[position]
+            
+        elif position < 6:
+            puzzle[position], puzzle[position+3]=puzzle[position+3], puzzle[position]
+            
+        print("Current puzzle state:")
+        print_puzzle(puzzle)
+    print("Solved puzzle state:")
+    print_puzzle(puzzle)
+    
+puzzle=[1, 2, 3, 4, 0, 5, 7, 8, 6]
+solve_puzzle(puzzle)
+[15/11, 10:22 pm] Mohith: class Vacuum:
+    def __init__(self, x, y):  # Corrected __init__ method
+        self.x = x
+        self.y = y
+        self.cleaned = []
+
+    def move(self, dx, dy):
+        self.x = self.x + dx
+        self.y = self.y + dy  # Corrected movement for y
+
+    def clean(self):
+        if (self.x, self.y) not in self.cleaned:
+            self.cleaned.append((self.x, self.y))
+            print(f"Cleaned spot ({self.x}, {self.y})")
+
+# Create a vacuum cleaner
+vacuum = Vacuum(0, 0)
+
+# Move and clean
+vacuum.move(1, 1)
+vacuum.clean()
+vacuum.move(1, 0)
+vacuum.clean()
+vacuum.move(0, -1)
+vacuum.clean()
